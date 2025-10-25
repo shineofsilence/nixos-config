@@ -57,7 +57,8 @@
     isNormalUser = true;
     home = "/home/kayros";
     shell = pkgs.bash;
-    hashedPassword = ""; # Generate with 'mkpasswd -m sha-512' and paste here
+	initialPassword = "123";
+    # hashedPassword = ""; # Generate with 'mkpasswd -m sha-512' and paste here
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
   };
 
@@ -72,17 +73,6 @@
       PermitRootLogin = "no";
     };
   };
-  
-  # System packages
-  environment.systemPackages = with pkgs; [
-    wget
-    curl
-    git
-    htop
-    file
-    pciutils
-    usbutils
-  ];
 }
 
 
