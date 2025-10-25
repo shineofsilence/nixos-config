@@ -27,7 +27,5 @@
 				}
 			];
 		};
-		# Добавь это:
-		packages.${system}.system = nixosSystem.config.system.build.toplevel;
 	};
 }
