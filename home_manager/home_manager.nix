@@ -10,6 +10,6 @@
   # Импортируем конфигурации приложений
   imports = [
     ./console/git.nix
-    # ./console/neovim.nix
+    ./console/neovim.nix
   ];
 }
