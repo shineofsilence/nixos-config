@@ -2,7 +2,7 @@
 
 {
   # Basic system settings
-  system.stateVersion = "23.11";
+  system.stateVersion = "25.05";
   
   # Set your time zone
   time.timeZone = "Europe/Moscow";

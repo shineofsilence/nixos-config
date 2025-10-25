@@ -3,7 +3,7 @@
 {
   # This value determines the Home Manager release that your
   # configuration is compatible with.
-  home.stateVersion = "23.11";
+  home.stateVersion = "25.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -112,19 +112,6 @@
       ls = "eza --icons";
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake ~/nixos-config#nixos";
-    };
-  };
-
-  # GTK and icon theme configuration
-  gtk = {
-    enable = true;
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
-    };
-    theme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-theme;
     };
   };
 
