@@ -19,11 +19,11 @@
 		nixosConfigurations.system = nixpkgs.lib.nixosSystem {
 			inherit system;
 			modules = [
-				./system/configuration.nix
+				./hosts/configuration.nix
 				home-manager.nixosModules.home-manager {
 					home-manager.useGlobalPkgs = true;
 					home-manager.useUserPackages = true;
-					home-manager.users.kayros = import ./home-manager/home-manager.nix;
+					home-manager.users.kayros = import ./home_manager/home_manager.nix;
 				}
 			];
 		};
