@@ -1,6 +1,14 @@
-{ config, lib, pkgs, ... }: {
-  # ====================== HARDWARE =============================
-  imports = [ ./hardware-configuration.nix ];
+{ config, lib, pkgs, ... }:
+
+# Импортируем сгенерированную конфигурацию железа
+# Этот файл генерируется командой nixos-generate-config
+# и должен быть в .gitignore
+imports = [
+  ./hardware-configuration.nix
+  # Другие импорты...
+];
+
+{
   # ======================== MAIN ===============================
   system.stateVersion = "24.11";
   
@@ -68,7 +76,6 @@
   
   # System packages
   environment.systemPackages = with pkgs; [
-    vim
     wget
     curl
     git
