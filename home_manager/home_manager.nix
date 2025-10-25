@@ -7,6 +7,7 @@
   # Импортируем конфигурации приложений
   imports = [
     ./console/git.nix
+    ./console/zsh.nix
     # ./console/neovim.nix
   ];
 }

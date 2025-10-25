@@ -32,6 +32,16 @@
     keyMap = "ruwin_alt_sh-UTF-8";  # ← это встроенный keymap с Alt+Shift
   };
 
+  # System packages
+  environment.systemPackages = with pkgs; [
+    zsh
+    oh-my-zsh
+  ];
+
+  # Set Zsh as default shell for all users
+  users.defaultUserShell = pkgs.zsh;
+  environment.shells = with pkgs; [ zsh ];
+
   # Nix settings
   nix = {
     gc = {
@@ -45,8 +55,8 @@
   users.users.kayros = {
     isNormalUser = true;
     home = "/home/kayros";
-    shell = pkgs.bash;
-	  initialPassword = "123";
+    shell = pkgs.zsh;
+    initialPassword = "123";
     # hashedPassword = ""; # Generate with 'mkpasswd -m sha-512' and paste here
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
   };
