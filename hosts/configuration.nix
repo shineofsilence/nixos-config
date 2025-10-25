@@ -29,14 +29,9 @@
   console = {
     font = "ter-v24n";
     packages = with pkgs; [ terminus_font ];
-    keyMap = "us";
-    earlySetup = ''
-      loadkeys <<'EOF'
-        alt_shift_toggle
-        include "us"
-        include "ru"
-      EOF
-    '';
+    keyMap = "us,ru";  # две раскладки
+    # Переключение по Alt+Shift:
+    options = "grp:alt_shift_toggle";
   };
 
   # Nix settings
