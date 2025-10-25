@@ -5,7 +5,7 @@
 	# Этот файл генерируется командой nixos-generate-config
 	# и должен быть в .gitignore
 	imports = [
-	./hardware-configuration.nix
+	./system/hardware-configuration.nix
 	# Другие импорты...
   ];
   # ======================== MAIN ===============================
