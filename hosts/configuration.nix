@@ -12,7 +12,7 @@
   system.stateVersion = "25.05";
   
   # Network configuration
-  networking.hostName = "KayRos";
+  networking.hostName = "kayros-pc";
   networking.networkmanager.enable = true;
   
   # Bootloader
@@ -46,7 +46,7 @@
     isNormalUser = true;
     home = "/home/kayros";
     shell = pkgs.bash;
-	initialPassword = "123";
+	  initialPassword = "123";
     # hashedPassword = ""; # Generate with 'mkpasswd -m sha-512' and paste here
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
   };
