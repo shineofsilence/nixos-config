@@ -38,6 +38,14 @@
     oh-my-zsh
   ];
 
+  # Включение Zsh
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
   # Set Zsh as default shell for all users
   users.defaultUserShell = pkgs.zsh;
   environment.shells = with pkgs; [ zsh ];

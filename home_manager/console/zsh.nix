@@ -11,13 +11,11 @@
       enable = true;
       theme = "agnoster";
       plugins = [
-        "git"
         "nix"
-        "python"
+        "git"
         "docker"
+        "python"
         "haskell"
-        "zsh-autosuggestions"
-        "zsh-syntax-highlighting"
       ];
     };
 
@@ -33,9 +31,6 @@
       HISTSIZE=10000
       SAVEHIST=10000
       HISTFILE=~/.zsh_history
-      
-      # Включение автодополнения
-      autoload -U compinit && compinit
       
       # Установка курсора в конец строки при навигации по истории
       autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
