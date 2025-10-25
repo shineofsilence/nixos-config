@@ -13,51 +13,111 @@ This is a minimal, yet functional Hyprland configuration for NixOS, designed to 
 - **Audio**: PipeWire with PulseAudio compatibility
 - **Theming**: Basic GTK and icon themes
 
-## Installation
+## Установка с минимального образа
 
-1. **Boot into NixOS Minimal ISO**
-   - Download the latest NixOS minimal ISO from [nixos.org](https://nixos.org/download.html)
-   - Create a bootable USB and boot from it
+1. **Подготовка**
+   - Скачайте минимальный образ NixOS с [nixos.org](https://nixos.org/download.html)
+   - Создайте загрузочную флешку и загрузитесь с неё
+   - В VMware (если используется) добавьте в .vmx файл:
+     ```
+     firmware = "efi"
+     ```
+   - Получите root-доступ:
+     ```bash
+     sudo -s
+     ```
 
-2. **Partitioning** (adjust as needed)
+2. **Разметка диска**
    ```bash
-   # For UEFI systems
-   parted /dev/sda -- mklabel gpt
-   parted /dev/sda -- mkpart primary 512MiB -8GiB
-   parted /dev/sda -- mkpart primary linux-swap -8GiB 100%
-   parted /dev/sda -- mkpart ESP fat32 1MiB 512MiB
-   parted /dev/sda -- set 3 esp on
+   fdisk /dev/sda
+   # d - Удалить существующие разделы (если есть)
+   # g - Создать новую GPT-таблицу (обязательно для UEFI!)
    
-   # Format partitions
-   mkfs.ext4 -L nixos /dev/sda1
-   mkswap -L swap /dev/sda2
-   mkfs.fat -F 32 -n boot /dev/sda3
+   # Создать EFI раздел (512M):
+   # n - создать раздел
+   #   - размер: `+512M`
+   # t - изменить тип: `1` (EFI System)
    
-   # Mount partitions
-   mount /dev/disk/by-label/nixos /mnt
-   mkdir -p /mnt/boot
-   mount /dev/disk/by-label/boot /mnt/boot
-   swapon /dev/sda2
+   # Создать корневой раздел (оставшееся место):
+   # n - создать раздел
+   #   - принять размер по умолчанию (весь оставшийся диск)
+   
+   # w - записать изменения и выйти
    ```
 
-3. **Generate hardware configuration**
+3. **Создание файловых систем**
    ```bash
-   nixos-generate-config --root /mnt
+   # EFI-раздел (только FAT32!)
+   mkfs.fat -F 32 /dev/sda1
+   
+   # Корневой раздел Btrfs
+   mkfs.btrfs -L nixos /dev/sda2
+   
+   # Монтирование
+   mount /dev/sda2 /mnt
+   btrfs subvolume create /mnt/@
+   umount /mnt
+   mount -o subvol=@ /dev/sda2 /mnt
+   
+   # EFI раздел
+   mkdir -p /mnt/boot/efi
+   mount /dev/sda1 /mnt/boot/efi
    ```
 
-4. **Clone this repository**
+4. **Настройка swap-файла**
    ```bash
+   # Создаем swap-файл (размер в байтах, например, 4G = 4294967296)
+   dd if=/dev/zero of=/mnt/swapfile bs=1M count=4096 status=progress
+   chmod 600 /mnt/swapfile
+   mkswap /mnt/swapfile
+   swapon /mnt/swapfile
+   ```
+
+5. **Клонирование конфигурации**
+   ```bash
+   # Установка git
    nix-shell -p git
-   git clone https://github.com/yourusername/nixos-hyprland-config /mnt/etc/nixos
-   cd /mnt/etc/nixos
+   
+   # Клонирование репозитория
+   mkdir -p /mnt/home/kayros
+   git clone https://github.com/yourname/nixos-config /mnt/home/kayros/nixos-config
+   
+   # Генерация конфигурации железа
+   nixos-generate-config --root /mnt
+   # Или с сохранением в отдельный файл:
+   # nixos-generate-config --show-hardware-config > hardware.nix
+   
+   # Копируем сгенерированные файлы в нашу конфигурацию
    ```
 
-5. **Copy hardware configuration**
+6. **Настройка конфигурации**
+   В файле конфигурации NixOS добавьте:
+   ```nix
+   # Включение swap-файла
+   swapDevices = [ 
+     { 
+       device = "/swapfile";
+       size = 4096;  # размер в МБ
+     }
+   ];
+   
+   # Или для zram (альтернатива swap-файлу)
+   # zramSwap.enable = true;
+   # zramSwap.memoryPercent = 50;  # 50% от ОЗУ
+   ```
+
+7. **Установка системы**
    ```bash
-   cp /mnt/etc/nixos/hardware-configuration.nix .
+   # Сборка системы
+   nix --extra-experimental-features "nix-command flakes" build .#nixosConfigurations.system.config.system.build.toplevel
+   
+   # Установка
+   nixos-install --root /mnt --system ./result
+   
+   # После перезагрузки для обновления системы:
+   # nixos-rebuild switch --flake ~/nixos-config#system
    ```
-
-6. **Edit configuration**
+   ```
    - Update `configuration.nix` with your username and hostname
    - Update `home-manager/home.nix` with your personal information
 

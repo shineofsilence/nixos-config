@@ -60,7 +60,7 @@
         "$mainMod, M, exit"
         "$mainMod, V, togglefloating"
         "$mainMod, D, exec, wofi --show drun"
-        "$mainMod, P, exec, grim -g "$(slurp)" - | wl-copy"
+        "$mainMod, P, exec, grim -g '$(slurp)' - | wl-copy"
         "$mainMod, F, fullscreen"
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -115,8 +115,25 @@
     };
   };
 
+  # GTK and icon theme configuration
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+    };
+    theme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-theme;
+    };
+  };
+
   # Basic packages to install
   home.packages = with pkgs; [
+    # Theme packages
+    gnome.adwaita-icon-theme
+    gnome.adwaita-theme
+    
     # Terminal utilities
     eza
     bat

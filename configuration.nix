@@ -71,6 +71,9 @@
     (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
     noto-fonts
     noto-fonts-emoji
+    
+    # Icons
+    adwaita-icon-theme
   ];
 
   # Enable Hyprland
@@ -120,6 +123,14 @@
   # Enable polkit for authentication dialogs
   security.polkit.enable = true;
   
+  # SWAP-file
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 4096;
+    }
+  ];
+
   # Enable necessary systemd services
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
