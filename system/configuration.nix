@@ -2,11 +2,11 @@
 
 {
   # Импортируем сгенерированную конфигурацию железа
-	# Этот файл генерируется командой nixos-generate-config
-	# и должен быть в .gitignore
-	imports = [
-	./hardware-configuration.nix
-	# Другие импорты...
+  # Этот файл генерируется командой nixos-generate-config
+  # и должен быть в .gitignore
+  imports = [
+    ./hardware-configuration.nix
+    # Другие импорты...
   ];
   # ======================== MAIN ===============================
   system.stateVersion = "24.11";
