@@ -29,9 +29,7 @@
   console = {
     font = "ter-v24n";
     packages = with pkgs; [ terminus_font ];
-    keyMap = "us,ru";  # две раскладки
-    # Переключение по Alt+Shift:
-    options = "grp:alt_shift_toggle";
+    keyMap = "ruwin_alt_sh-UTF-8";  # ← это встроенный keymap с Alt+Shift
   };
 
   # Nix settings
