@@ -14,6 +14,7 @@
   networking.hostName = "kayros-pc";
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Примеры других настроек:
   i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   # powerManagement.enable = true;
@@ -46,23 +47,14 @@
   # 5. Пакеты и оболочки
   # ───────────────────────────────────────
   environment.systemPackages = with pkgs; [
-    home-manager
     zsh
-    git
-    hyprland
-    # kitty
-    # neovim
-    # firefox
   ];
-  # Включение системных программ (генерируют конфиги)
-  # programs.home-manager.enable = true;
+  environment.shells = with pkgs; [ zsh bash ];
+
   programs.zsh.enable = true;
   programs.git.enable = true;
   programs.hyprland.enable = true;
-  # Примеры:
-  # programs.fish.enable = true;
   # programs.neovim.enable = true;
-  # environment.shells = with pkgs; [ zsh bash ];
 
   # ───────────────────────────────────────
   # 6. Пользователи и права
