@@ -20,12 +20,13 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-  };
-  
-  programs.zsh.ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "python" "sudo" ];
-    theme = "agnoster"; # или "robbyrussell" для минимализма
+	# Включение Oh My Zsh
+	enableOhMyZsh = true;
+    # Плагины и тема указываются отдельно
+    ohMyZsh = {
+	  plugins = [ "git" "sudo" "zoxide" ];
+	  theme = "agnoster";  # или "robbyrussell", "bira" и т.д.
+	};
   };
   
   # Git: базовая настройка
