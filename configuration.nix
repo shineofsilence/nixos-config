@@ -68,18 +68,8 @@
   };
   # Sudo без пароля для группы wheel
   security.sudo.wheelNeedsPassword = false;
-  # Примеры:
-  # users.users.root.initialPassword = "root123";
-  # security.pam.services.sudo.u2fAuth = true;  # 2FA
-
-  # ───────────────────────────────────────
-  # 7. Службы (services)
-  # ───────────────────────────────────────
-  services.sshd.enable = true;
-  # Примеры других служб:
-  # services.dbus.enable = true;          # обычно включён по умолчанию
-  # services.tailscale.enable = true;
-  # services.xserver.enable = false;      # явно отключаем X11
   services.getty.autologinUser = "kayros";
+  services.sshd.enable = true;
+
 }
 

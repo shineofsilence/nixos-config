@@ -7,6 +7,7 @@
   home.stateVersion = "25.05";  # версия Home Manager (должна совпадать с релизом)
   
   home.packages = with pkgs; [
+    home-manager      # Home Manager
 	oh-my-zsh         # настройки консоли
 	kitty             # терминал
 	#  wofi           # лаунчер (аналог rofi для Wayland)
@@ -24,7 +25,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "sudo" "docker" ];  # опционально
-      theme = "agnoster";                   # опционально
+      theme = "evan";                       # опционально
     };
   };
   
