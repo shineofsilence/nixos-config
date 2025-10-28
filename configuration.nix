@@ -22,8 +22,8 @@
   i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
   # i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   console = {
-    font = "ter-202n";
     packages = with pkgs; [ terminus_font ];
+    font = "Lat2-Terminus20x10";
 	# useXkbConfig = false;
   };
 
@@ -40,6 +40,7 @@
   # ───────────────────────────────────────
   # 4. Загрузка и ядро
   # ───────────────────────────────────────
+  boot.kernelParams = [ "video=1280x800" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
