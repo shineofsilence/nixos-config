@@ -6,13 +6,12 @@
   home.homeDirectory = "/home/kayros";
   home.stateVersion = "25.05";  # версия Home Manager (должна совпадать с релизом)
   
-  #home.packages = with pkgs; [
-  #  kitty          # терминал
-  #  wofi           # лаунчер (аналог rofi для Wayland)
-  #  swaybg         # установка фона
-  #  wl-clipboard # для работы Ctrl+C/Ctrl+V между приложениями
-  #];
-  
+  home.packages = with pkgs; [
+	oh-my-zsh         # настройки консоли
+	kitty             # терминал
+	#  wofi           # лаунчер (аналог rofi для Wayland)
+    #  swaybg         # установка фона
+  ];
   # ───────────── Настройка программ ─────────────
 
   # Zsh: включить и настроить
@@ -22,7 +21,13 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
   };
-
+  
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    plugins = [ "git" "python" "sudo" ];
+    theme = "agnoster"; # или "robbyrussell" для минимализма
+  };
+  
   # Git: базовая настройка
   programs.git = {
     enable = true;
@@ -36,19 +41,35 @@
     xwayland.enable = true;  # для запуска X11-приложений
     # extraConfig — содержимое файла ~/.config/hypr/hyprland.conf
     extraConfig = ''
-      monitor=,preferred,auto,1
+      # Монитор
+	  monitor = ,preferred,auto,1
 
-      input {
-        kb_layout = us,ru
-        kb_options = grp:alt_shift_toggle
-      }
+	  # Клавиатура
+	  input {
+		kb_layout = us,ru
+		kb_options = grp:alt_shift_toggle
+	  }
 
-      bind = ALT, RETURN, exec, kitty
-      bind = ALT, Q, killactive,
-      bind = ALT, M, exit,
+	  # Основные бинды
+	  bind = ALT, RETURN, exec, kitty
+	  bind = ALT, Q, killactive,
+	  bind = ALT, M, exit,
+
+	  # Переключение окон
+	  bind = ALT, Tab, cyclenext,
+	  bind = ALT, SHIFT, Tab, cycleprev,
+
+	  # Перемещение окон
+	  bind = ALT, H, movefocus, l
+	  bind = ALT, L, movefocus, r
+	  bind = ALT, K, movefocus, u
+	  bind = ALT, J, movefocus, d
+
+	  # Закрыть окно
+	  bind = ALT, W, killactive,
     '';
   };
-
+  
   # ───────────── Дополнительно ─────────────
   # Можно добавить:
   # - programs.neovim
