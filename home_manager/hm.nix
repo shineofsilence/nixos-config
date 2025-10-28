@@ -36,12 +36,12 @@
       shell = "zsh";
 
       # Шрифт — используем Nerd Font
-      font_family = "ComicShannsMono";
+      # font_family = "ComicShannsMono";
       font_size = 20;
 
       # Опционально: отступы, прозрачность и т.д.
-      window_padding_width = 8;
-      scrollback_lines = 10000;
+      #window_padding_width = 8;
+      #scrollback_lines = 10000;
     };
   };
   
