@@ -20,10 +20,9 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-	# Включение Oh My Zsh
-	enableOhMyZsh = true;
-    # Плагины и тема указываются отдельно
+	# Oh My Zsh
     ohMyZsh = {
+	  enable = true;
 	  plugins = [ "git" "sudo" "zoxide" ];
 	  theme = "agnoster";  # или "robbyrussell", "bira" и т.д.
 	};
