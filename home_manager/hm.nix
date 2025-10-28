@@ -25,7 +25,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "sudo" "docker" ];  # опционально
-      theme = "evan";                       # опционально
+      theme = "af-magic";                       # опционально
     };
   };
   
