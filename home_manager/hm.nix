@@ -33,8 +33,7 @@
   programs.kitty = {
     enable = true;
     settings = {
-      # Явно указываем shell (важно!)
-      shell = "${pkgs.zsh}/bin/zsh";
+      shell = "zsh";
 
       # Шрифт — используем Nerd Font
       font_family = "JetBrainsMono Nerd Font";
