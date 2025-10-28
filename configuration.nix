@@ -7,18 +7,26 @@
   imports = [ ./hardware-configuration.nix ];
   # Версия NixOS (обязательно!)
   system.stateVersion = "25.05";
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
   # ───────────────────────────────────────
   # 2. Системные настройки
   # ───────────────────────────────────────
   networking.hostName = "kayros-pc";
   time.timeZone = "Europe/Moscow";
+  
+  # ───────────────────────────────────────
+  # Локализация и консоль
+  # ───────────────────────────────────────
   i18n.defaultLocale = "en_US.UTF-8";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Примеры других настроек:
+  i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
   i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
-  # powerManagement.enable = true;
-  # environment.variables = { EDITOR = "nvim"; };
+  console = {
+    earlySetup = true;
+    font = "Lat2-Terminus20";
+    keyMap = "ru";
+    useXkbConfig = true;
+  };
 
   # ───────────────────────────────────────
   # 3. Сеть и брандмауэр
