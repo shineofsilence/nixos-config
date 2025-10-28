@@ -9,7 +9,7 @@
   home.packages = with pkgs; [
     home-manager      # Home Manager
 	oh-my-zsh         # настройки консоли
-	kitty             # терминал
+	# kitty             # терминал
 	#  wofi           # лаунчер (аналог rofi для Wayland)
     #  swaybg         # установка фона
   ];
@@ -26,6 +26,23 @@
       enable = true;
       plugins = [ "git" "sudo" "docker" ];  # опционально
       theme = "af-magic";                       # опционально
+    };
+  };
+  
+  # ✅ Kitty — декларативно через Home Manager
+  programs.kitty = {
+    enable = true;
+    settings = {
+      # Явно указываем shell (важно!)
+      shell = "${pkgs.zsh}/bin/zsh";
+
+      # Шрифт — используем Nerd Font
+      font_family = "JetBrainsMono Nerd Font";
+      font_size = 20;
+
+      # Опционально: отступы, прозрачность и т.д.
+      window_padding_width = 8;
+      scrollback_lines = 10000;
     };
   };
   
