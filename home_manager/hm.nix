@@ -66,13 +66,14 @@
 	  }
 
 	  # Основные бинды
-	  bind = ALT, RETURN, exec, kitty
+	  bindd = ALT, K, Open my favourite terminal, exec, kitty
+	  #bind = ALT, RETURN, exec, kitty
 	  bind = ALT, Q, killactive,
 	  bind = ALT, M, exit,
 
 	  # Переключение окон
-	  bind = ALT, KEY_TAB, cyclenext,
-	  bind = ALT, SHIFT, KEY_TAB, cycleprev,
+	  #bind = ALT, TAB, cyclenext,
+	  #bind = ALT, SHIFT, TAB, cycleprev,
 
 	  # Перемещение окон
 	  bind = ALT, H, movefocus, l
