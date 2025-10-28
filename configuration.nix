@@ -24,7 +24,6 @@
   ];
   environment.shells = with pkgs; [ zsh bash ];
   programs.zsh.enable = true;
-  programs.kbd.enable = true;
   programs.git.enable = true;
   programs.hyprland.enable = true;
   # programs.neovim.enable = true;
@@ -33,10 +32,10 @@
   # Локализация и консоль
   # ───────────────────────────────────────
   i18n.defaultLocale = "en_US.UTF-8";
-  i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+  # i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
   # i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   console = {
-    font = "UniCyr22";
+    font = "LatGrkCyr-12x22";
 	useXkbConfig = false;
   };
 
