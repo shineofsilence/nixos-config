@@ -22,7 +22,6 @@
   i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
   # i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   console = {
-    earlySetup = true;
     font = "Lat2-Terminus20";
     useXkbConfig = false;
   };
