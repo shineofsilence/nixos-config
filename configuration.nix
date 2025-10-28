@@ -55,7 +55,7 @@
     # firefox
   ];
   # Включение системных программ (генерируют конфиги)
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
   programs.zsh.enable = true;
   programs.git.enable = true;
   programs.hyprland.enable = true;
