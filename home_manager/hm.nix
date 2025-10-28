@@ -5,7 +5,14 @@
   home.username = "kayros";
   home.homeDirectory = "/home/kayros";
   home.stateVersion = "25.05";  # версия Home Manager (должна совпадать с релизом)
-
+  
+  #home.packages = with pkgs; [
+  #  kitty          # терминал
+  #  wofi           # лаунчер (аналог rofi для Wayland)
+  #  swaybg         # установка фона
+  #  wl-clipboard # для работы Ctrl+C/Ctrl+V между приложениями
+  #];
+  
   # ───────────── Настройка программ ─────────────
 
   # Zsh: включить и настроить
