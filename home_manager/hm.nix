@@ -30,13 +30,17 @@
   };
   
   # ✅ Kitty — декларативно через Home Manager
-  programs.kitty = {
+  programs.kitty = lib.mkForce {
     enable = true;
     settings = {
+	  #dynamic_background_opacity = true;
+	  window_padding_width = 10;
+      background_opacity = "0.5";
+      background_blur = 5;
       #shell = "zsh";
-      # Шрифт — используем Nerd Font
+      #font_size = 20;
+	  # Шрифт — используем Nerd Font
       # font_family = "ComicShannsMono";
-      font_size = 20;
       # Опционально: отступы, прозрачность и т.д.
       #window_padding_width = 8;
       #scrollback_lines = 10000;
