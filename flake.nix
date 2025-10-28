@@ -1,37 +1,28 @@
 {
-  description = "Minimal Hyprland NixOS configuration";
+  description = "Kayros NixOS config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
-      # This will be your hostname - change it to match your system
-      nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+    in {
+      nixosConfigurations.system = nixpkgs.lib.nixosSystem {
+        inherit system;
         modules = [
-          # Import the hardware configuration (you'll need to generate this)
-          ./hardware-configuration.nix
-          
-          # Main system configuration
           ./configuration.nix
-          
-          # Home Manager configuration
           home-manager.nixosModules.home-manager {
-            home-manager = {
-              useGlobalPkgs = true;
-              users.your-username = import ./home-manager/home.nix;
-              extraSpecialArgs = { inherit inputs; };
-            };
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.kayros = import ./home_manager/home.nix;
           }
         ];
       };
     };
-  };
 }
