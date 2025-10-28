@@ -15,15 +15,6 @@
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
   };
-  programs.zsh.ohMyZsh = {
-    enable = true;
-    plugins = [
-      "git"
-      "python"
-      "man"
-    ];
-    theme = "agnoster";
-  };
 
   # Git: базовая настройка
   programs.git = {
