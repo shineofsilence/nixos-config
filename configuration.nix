@@ -38,8 +38,10 @@
     font = "LatGrkCyr-12x22";
 	useXkbConfig = false;
   };
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-];
+  fonts.packages = [ 
+    pkgs.nerd-fonts.comic-shanns-mono
+    pkgs.nerd-fonts.droid-sans-mono
+  ];
   # ───────────────────────────────────────
   # 3. Сеть и брандмауэр
   # ───────────────────────────────────────

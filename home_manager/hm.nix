@@ -36,7 +36,7 @@
       shell = "zsh";
 
       # Шрифт — используем Nerd Font
-      font_family = "JetBrainsMono Nerd Font";
+      font_family = "ComicShannsMono";
       font_size = 20;
 
       # Опционально: отступы, прозрачность и т.д.
