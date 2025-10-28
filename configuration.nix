@@ -15,7 +15,8 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   environment.systemPackages = with pkgs; [ zsh git hyprland ];
-
+  programs.zsh.enable = true;
+  
   users.users.kayros = {
     isNormalUser = true;
     home = "/home/kayros";
