@@ -16,6 +16,20 @@
   time.timeZone = "Europe/Moscow";
   
   # ───────────────────────────────────────
+  # 5. Пакеты и оболочки
+  # ───────────────────────────────────────
+  environment.systemPackages = with pkgs; [
+    zsh
+	kbd
+  ];
+  environment.shells = with pkgs; [ zsh bash ];
+  programs.zsh.enable = true;
+  programs.kbd.enable = true;
+  programs.git.enable = true;
+  programs.hyprland.enable = true;
+  # programs.neovim.enable = true;
+  
+  # ───────────────────────────────────────
   # Локализация и консоль
   # ───────────────────────────────────────
   i18n.defaultLocale = "en_US.UTF-8";
@@ -25,6 +39,8 @@
     font = "UniCyr22";
 	useXkbConfig = false;
   };
+
+
 
   # ───────────────────────────────────────
   # 3. Сеть и брандмауэр
@@ -49,20 +65,6 @@
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelParams = [ "quiet" "loglevel=4" ];
   # boot.supportedFilesystems = [ "ntfs" ];  # если нужно
-
-  # ───────────────────────────────────────
-  # 5. Пакеты и оболочки
-  # ───────────────────────────────────────
-  environment.systemPackages = with pkgs; [
-    zsh
-	kbd
-  ];
-  environment.shells = with pkgs; [ zsh bash ];
-
-  programs.zsh.enable = true;
-  programs.git.enable = true;
-  programs.hyprland.enable = true;
-  # programs.neovim.enable = true;
 
   # ───────────────────────────────────────
   # 6. Пользователи и права
