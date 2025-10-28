@@ -86,7 +86,6 @@
   services.sshd.enable = true;
   # Примеры других служб:
   # services.dbus.enable = true;          # обычно включён по умолчанию
-  services.logind.enable = true;        # критично для Wayland!
   # services.tailscale.enable = true;
   # services.xserver.enable = false;      # явно отключаем X11
 }
