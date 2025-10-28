@@ -5,7 +5,7 @@
   # 1. Импорты и версия
   # ───────────────────────────────────────
   imports = [ ./hardware-configuration.nix ];
-  # Версия NixOS (обязательно!)
+  # Версия NixOS
   system.stateVersion = "25.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
@@ -20,12 +20,11 @@
   # ───────────────────────────────────────
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
-  i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
+  # i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   console = {
     earlySetup = true;
     font = "Lat2-Terminus20";
-    keyMap = "ru";
-    useXkbConfig = true;
+    useXkbConfig = false;
   };
 
   # ───────────────────────────────────────
