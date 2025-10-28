@@ -22,8 +22,9 @@
   i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
   # i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   console = {
-    font = "UniCyr18";
-    useXkbConfig = false;
+    font = "ter-202n";
+    packages = with pkgs; [ terminus_font ];
+	# useXkbConfig = false;
   };
 
   # ───────────────────────────────────────
