@@ -22,8 +22,7 @@
   i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
   # i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
   console = {
-    font = "ter-164b";
-	packages = with pkgs; [ terminus_font ];
+    font = "UniCyr22";
 	useXkbConfig = false;
   };
 
@@ -56,6 +55,7 @@
   # ───────────────────────────────────────
   environment.systemPackages = with pkgs; [
     zsh
+	kbd
   ];
   environment.shells = with pkgs; [ zsh bash ];
 
