@@ -20,13 +20,12 @@
     enableCompletion = true;
     syntaxHighlighting.enable = true;
     autosuggestion.enable = true;
-  };
-  
-  # Oh My Zsh
-  programs.zsh.ohMyZsh = {
-	enable = true;
-	plugins = [ "git" ];
-	theme = "agnoster";
+	# Вот так подключается Oh My Zsh:
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" "docker" ];  # опционально
+      theme = "agnoster";                   # опционально
+    };
   };
   
   # Git: базовая настройка
