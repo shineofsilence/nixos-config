@@ -71,8 +71,8 @@
 	  bind = ALT, M, exit,
 
 	  # Переключение окон
-	  bind = ALT, TAB, cyclenext,
-	  bind = ALT, SHIFT, TAB, cycleprev,
+	  bind = ALT, KEY_TAB, cyclenext,
+	  bind = ALT, SHIFT, KEY_TAB, cycleprev,
 
 	  # Перемещение окон
 	  bind = ALT, H, movefocus, l
