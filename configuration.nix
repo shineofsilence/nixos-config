@@ -88,5 +88,22 @@
   # services.dbus.enable = true;          # обычно включён по умолчанию
   # services.tailscale.enable = true;
   # services.xserver.enable = false;      # явно отключаем X11
+  # В секцию services
+  services.getty.autologinUser = "kayros";
+
+  # Чтобы Hyprland стартовал при входе в TTY
+  environment.etc."systemd/system/hyprland-session.target".text = ''
+    [Unit]
+    Description=Hyprland session
+    BindsTo=graphical-session.target
+  '';
+
+  programs.zsh.initExtra = ''
+    if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+      export XDG_SESSION_TYPE=wayland
+      export XDG_CURRENT_DESKTOP=Hyprland
+      exec systemctl --user import-environment && exec Hyprland
+    fi
+  '';
 }
 
