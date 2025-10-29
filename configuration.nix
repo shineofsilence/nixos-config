@@ -20,14 +20,17 @@
   # ───────────────────────────────────────
   environment.systemPackages = with pkgs; [
     zsh
+	hyprland
 	kitty
+	waybar
+	wofi
   ];
   environment.shells = with pkgs; [ zsh bash ];
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   
   programs.zsh.enable = true;
   programs.git.enable = true;
-  
+  #services.displayManager.defaultSession = "hyprland"
   programs.hyprland = {
     enable = true;
     withUWSM = true;          # обязательно для корректного запуска сессии
@@ -39,6 +42,9 @@
     extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
   
+  # Это тоже нужно для UWSM
+  #services.displayManager.autoLogin.enable = false;  # убедись, что нет автологина в X11!
+  #services.xserver.enable = false;                   # Hyprland ≠ X11!
   # hardware.graphics.enable = true;
   
   # ───────────────────────────────────────
