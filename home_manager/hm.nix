@@ -20,11 +20,11 @@
   #    echo "Warning: could not enable linger for ${config.home.username}"
   #  fi
   #'';
-  #home.sessionVariables = {
-  #  XDG_SESSION_TYPE = "wayland";
-  #  XDG_CURRENT_DESKTOP = "Hyprland";
-  #};
-  home.file.".config/systemd/user/hyprland.service".text = "";
+  home.sessionVariables = {
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+  };
+  #home.file.".config/systemd/user/hyprland.service".text = "";
   # ───────────── Настройка программ ─────────────
 
   # Zsh: включить и настроить
