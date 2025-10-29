@@ -84,6 +84,7 @@
   };
   # Sudo без пароля для группы wheel
   security.sudo.wheelNeedsPassword = false;
+  systemd.user.linger = true;
   services.getty.autologinUser = "kayros";
   services.sshd.enable = true;
 
