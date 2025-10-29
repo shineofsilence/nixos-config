@@ -38,7 +38,23 @@
     userName = "KayRos";
     userEmail = "shineofsilence@github.com";
   };
+  
+  systemd.user.services.hyprland = {
+    Unit.Description = "Hyprland compositor";
+    Unit.Documentation = "https://hyprland.org/";
+    Unit.After = [ "graphical-session.target" ];
+    Unit.BindsTo = [ "graphical-session.target" ];
 
+    Service.ExecStart = "${pkgs.hyprland}/bin/Hyprland";
+    Service.Environment = [
+      "XDG_SESSION_TYPE=wayland"
+      "XDG_CURRENT_DESKTOP=Hyprland"
+    ];
+    Service.Restart = "on-failure";
+    Service.RestartSec = 1;
+    Install.WantedBy = [ "default.target" ];
+  };
+  
   # Hyprland: включить и задать конфиг
   wayland.windowManager.hyprland = {
     enable = true;
