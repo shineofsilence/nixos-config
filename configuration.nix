@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, hyprland,  ... }:
 
 {
   # ───────────────────────────────────────
@@ -33,8 +33,10 @@
   #services.displayManager.defaultSession = "hyprland"
   programs.hyprland = {
     enable = true;
-    withUWSM = true;          # обязательно для корректного запуска сессии
-    xwayland.enable = true;   # чтобы работали X11-приложения (включая некоторые GUI-утилиты)
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true;
+    xwayland.enable = true;
   };
   
   xdg.portal = {
