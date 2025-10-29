@@ -71,8 +71,6 @@
   # Hyprland: включить и задать конфиг
   wayland.windowManager.hyprland = {
     enable = true;
-	withUWSM = true; # recommended for most users
-    xwayland.enable = true;  # для запуска X11-приложений
     # extraConfig — содержимое файла ~/.config/hypr/hyprland.conf
     extraConfig = ''
       # Монитор
