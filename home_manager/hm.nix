@@ -14,19 +14,12 @@
     #  swaybg         # установка фона
   ];
   
-  # Включаем lingering для пользователя
-  #home.activation.enableLinger = lib.hm.dag.entryAfter ["writeBoundary"] ''
-  #  if ! sudo loginctl enable-linger ${config.home.username} 2>/dev/null; then
-  #    echo "Warning: could not enable linger for ${config.home.username}"
-  #  fi
-  #'';
   home.sessionVariables = {
     XDG_SESSION_TYPE = "wayland";
     XDG_CURRENT_DESKTOP = "Hyprland";
   };
-  #home.file.".config/systemd/user/hyprland.service".text = "";
-  # ───────────── Настройка программ ─────────────
 
+  # ───────────── Настройка программ ─────────────
   # Zsh: включить и настроить
   programs.zsh = {
     enable = true;
@@ -43,7 +36,6 @@
   
   # ✅ Kitty — декларативно через Home Manager
   programs.kitty.enable = true;
-  home.shellAliases.kitty = "WAYLAND_DISPLAY=wayland-1 ${pkgs.kitty}/bin/kitty";
   
   # Git: базовая настройка
   programs.git = {
@@ -68,9 +60,18 @@
     Install.WantedBy = [ "default.target" ];
   };
   
+  # Алиас для Kitty (обход проблемы с WAYLAND_DISPLAY)
+  home.shellAliases.kitty = "WAYLAND_DISPLAY=wayland-1 ${pkgs.kitty}/bin/kitty";
+  
+  #programs.hyprland = {
+  #  enable = true;
+  #  xwayland.enable = true; # Xwayland can be disabled.
+  #};
+  
   # Hyprland: включить и задать конфиг
   wayland.windowManager.hyprland = {
     enable = true;
+	withUWSM = true; # recommended for most users
     xwayland.enable = true;  # для запуска X11-приложений
     # extraConfig — содержимое файла ~/.config/hypr/hyprland.conf
     extraConfig = ''
