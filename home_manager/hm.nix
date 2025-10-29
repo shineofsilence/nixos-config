@@ -55,8 +55,7 @@
 	  }
 
 	  # Основные бинды
-	  bindd = ALT, K, kiss-kiss-kiss, sh -c, kitty
-	  #bind = ALT, RETURN, exec, kitty
+	  bind = ALT, T, exec, env WLR_RENDERER=pixman kitty
 	  bind = ALT, Q, killactive,
 	  bind = ALT, M, exit,
 
@@ -70,8 +69,6 @@
 	  bind = ALT, K, movefocus, u
 	  bind = ALT, J, movefocus, d
 
-	  # Закрыть окно
-	  bind = ALT, W, killactive,
     '';
   };
   

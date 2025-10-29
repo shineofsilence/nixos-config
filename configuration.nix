@@ -33,10 +33,6 @@
   #  XDG_CURRENT_DESKTOP = "Hyprland";
   #};
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    # Драйверы для VMware
-    vmwareDrivers
-  ];
   
   # ───────────────────────────────────────
   # Локализация и консоль
