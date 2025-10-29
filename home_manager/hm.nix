@@ -43,6 +43,7 @@
   
   # ✅ Kitty — декларативно через Home Manager
   programs.kitty.enable = true;
+  home.shellAliases.kitty = "WAYLAND_DISPLAY=wayland-1 ${pkgs.kitty}/bin/kitty";
   
   # Git: базовая настройка
   programs.git = {
