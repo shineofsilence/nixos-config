@@ -1,4 +1,4 @@
-{ pkgs, lib ... }:  # получаем доступ к пакетам
+{ pkgs, lib, ... }:  # получаем доступ к пакетам
 
 {
   # Обязательные метаданные пользователя
@@ -24,6 +24,7 @@
   #  XDG_SESSION_TYPE = "wayland";
   #  XDG_CURRENT_DESKTOP = "Hyprland";
   #};
+  home.file.".config/systemd/user/hyprland.service".text = "";
   # ───────────── Настройка программ ─────────────
 
   # Zsh: включить и настроить
