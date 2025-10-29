@@ -20,28 +20,25 @@
   # ───────────────────────────────────────
   environment.systemPackages = with pkgs; [
     zsh
-	kbd
 	kitty
   ];
   environment.shells = with pkgs; [ zsh bash ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  
   programs.zsh.enable = true;
   programs.git.enable = true;
+  
   programs.hyprland = {
     enable = true;
     withUWSM = true;          # обязательно для корректного запуска сессии
     xwayland.enable = true;   # чтобы работали X11-приложения (включая некоторые GUI-утилиты)
   };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
-  # programs.neovim.enable = true;
-  # Десктоп
-  #systemd.user.services.hyprland.Environment = {
-  #  XDG_SESSION_TYPE = "wayland";
-  #  XDG_CURRENT_DESKTOP = "Hyprland";
-  #};
+  
   # hardware.graphics.enable = true;
   
   # ───────────────────────────────────────
