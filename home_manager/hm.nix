@@ -55,7 +55,7 @@
 	  }
 
 	  # Основные бинды
-	  bind = ALT, T, exec, env WLR_RENDERER=pixman kitty
+	  bind = ALT, T, exec, kitty
 	  bind = ALT, Q, killactive,
 	  bind = ALT, M, exit,
 

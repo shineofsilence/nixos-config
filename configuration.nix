@@ -32,7 +32,7 @@
   #  XDG_SESSION_TYPE = "wayland";
   #  XDG_CURRENT_DESKTOP = "Hyprland";
   #};
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   
   # ───────────────────────────────────────
   # Локализация и консоль
