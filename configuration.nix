@@ -28,13 +28,15 @@
   programs.hyprland.enable = true;
   # programs.neovim.enable = true;
   # Десктоп
-  systemd.user.services.hyprland.Environment = {
-    XDG_SESSION_TYPE = "wayland";
-    XDG_CURRENT_DESKTOP = "Hyprland";
-  };
+  #systemd.user.services.hyprland.Environment = {
+  #  XDG_SESSION_TYPE = "wayland";
+  #  XDG_CURRENT_DESKTOP = "Hyprland";
+  #};
   hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    # Драйверы для VMware
+    vmwareDrivers
+  ];
   
   # ───────────────────────────────────────
   # Локализация и консоль
@@ -68,7 +70,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Драйверы для initrd (для VMware, NVMe и т.д.)
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "vmw_pvscsi" "vmwgfx" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "vmw_pvscsi" "vmwgfx" "drm" ];
   # Примеры:
   # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelParams = [ "quiet" "loglevel=4" ];
