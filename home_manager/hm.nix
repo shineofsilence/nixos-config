@@ -13,6 +13,14 @@
 	#  wofi           # лаунчер (аналог rofi для Wayland)
     #  swaybg         # установка фона
   ];
+  
+  # Включаем lingering для пользователя
+  home.activation.enableLinger = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    if ! sudo loginctl enable-linger ${config.home.username} 2>/dev/null; then
+      echo "Warning: could not enable linger for ${config.home.username}"
+    fi
+  '';
+  
   # ───────────── Настройка программ ─────────────
 
   # Zsh: включить и настроить
