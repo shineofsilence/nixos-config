@@ -1,4 +1,4 @@
-{ pkgs, ... }:  # получаем доступ к пакетам
+{ pkgs, lib ... }:  # получаем доступ к пакетам
 
 {
   # Обязательные метаданные пользователя
@@ -15,12 +15,15 @@
   ];
   
   # Включаем lingering для пользователя
-  home.activation.enableLinger = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    if ! sudo loginctl enable-linger ${config.home.username} 2>/dev/null; then
-      echo "Warning: could not enable linger for ${config.home.username}"
-    fi
-  '';
-  
+  #home.activation.enableLinger = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  #  if ! sudo loginctl enable-linger ${config.home.username} 2>/dev/null; then
+  #    echo "Warning: could not enable linger for ${config.home.username}"
+  #  fi
+  #'';
+  #home.sessionVariables = {
+  #  XDG_SESSION_TYPE = "wayland";
+  #  XDG_CURRENT_DESKTOP = "Hyprland";
+  #};
   # ───────────── Настройка программ ─────────────
 
   # Zsh: включить и настроить
@@ -47,12 +50,12 @@
     userEmail = "shineofsilence@github.com";
   };
   
+  systemd.user.enable = true;  # ← это включает systemd --user поддержку
   systemd.user.services.hyprland = {
     Unit.Description = "Hyprland compositor";
     Unit.Documentation = "https://hyprland.org/";
     Unit.After = [ "graphical-session.target" ];
     Unit.BindsTo = [ "graphical-session.target" ];
-
     Service.ExecStart = "${pkgs.hyprland}/bin/Hyprland";
     Service.Environment = [
       "XDG_SESSION_TYPE=wayland"
