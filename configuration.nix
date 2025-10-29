@@ -27,6 +27,14 @@
   programs.git.enable = true;
   programs.hyprland.enable = true;
   # programs.neovim.enable = true;
+  # Десктоп
+  systemd.user.services.hyprland.Environment = {
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "Hyprland";
+  };
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
   
   # ───────────────────────────────────────
   # Локализация и консоль

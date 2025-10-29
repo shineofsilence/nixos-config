@@ -30,22 +30,7 @@
   };
   
   # ✅ Kitty — декларативно через Home Manager
-  programs.kitty = lib.mkForce {
-    enable = true;
-    settings = {
-	  #dynamic_background_opacity = true;
-	  window_padding_width = 10;
-      background_opacity = "0.5";
-      background_blur = 5;
-      #shell = "zsh";
-      #font_size = 20;
-	  # Шрифт — используем Nerd Font
-      # font_family = "ComicShannsMono";
-      # Опционально: отступы, прозрачность и т.д.
-      #window_padding_width = 8;
-      #scrollback_lines = 10000;
-    };
-  };
+  programs.kitty.enable = true;
   
   # Git: базовая настройка
   programs.git = {
@@ -70,7 +55,7 @@
 	  }
 
 	  # Основные бинды
-	  bindd = ALT, K, Open my favourite terminal, exec, kitty
+	  bindd = ALT, K, kiss-kiss-kiss, sh -c, kitty
 	  #bind = ALT, RETURN, exec, kitty
 	  bind = ALT, Q, killactive,
 	  bind = ALT, M, exit,
