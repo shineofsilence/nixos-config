@@ -8,6 +8,10 @@
     ./hardware-configuration.nix
 	<home-manager/nixos>  # ← подключаем HM как модуль
   ];
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.kayros = import ./home.nix;  # путь к вашему home.nix
+  
   environment.systemPackages = with pkgs; [
     zsh
     git
