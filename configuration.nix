@@ -22,12 +22,11 @@
   time.timeZone = "Europe/Moscow";
   networking.hostName = "kayros-pc";
   networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
   
   # ───────────────────────────────────────
   # 3. Загрузка и ядро
   # ───────────────────────────────────────
-  # boot.kernelParams = [ "video=1024x768" ];
+  boot.kernelParams = [ "video=1024x768" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
