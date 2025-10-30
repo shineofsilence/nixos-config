@@ -6,12 +6,12 @@
   # ───────────────────────────────────────
   imports = [
     ./hardware-configuration.nix
-	pkgs.home-manager.nixosModules.home-manager       # ← официальный путь в новых версиях
+	<home-manager/nixos>
   ];
   environment.systemPackages = with pkgs; [
     zsh
     git
-	pkgs.home-manager
+	home-manager
   ];
   environment.shells = with pkgs; [ zsh bash ];
   
@@ -63,6 +63,5 @@
   # ───────────────────────────────────────
   # 6. Home Manager
   # ───────────────────────────────────────
-  programs.home-manager.enable = true;					# Включаем модуль Home Manager
   home-manager.users.kayros = import ./home/home.nix;   # Настраиваем Home Manager для пользователя kayros
 }
