@@ -1,80 +1,31 @@
-{ config, pkgs, hyprland,  ... }:
+{ config, pkgs, ... }:
 
 {
   # ───────────────────────────────────────
   # 1. Импорты и версия
   # ───────────────────────────────────────
-  imports = [ ./hardware-configuration.nix ];
-  # Версия NixOS
-  system.stateVersion = "25.05";
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  imports = [
+    ./hardware-configuration.nix
+	./apps/git.nix
+    ./apps/zsh.nix
+  ];
+  environment.systemPackages = with pkgs; [
+    zsh
+    git
+  ];
+  environment.shells = with pkgs; [ zsh bash ];
   
   # ───────────────────────────────────────
   # 2. Системные настройки
   # ───────────────────────────────────────
-  networking.hostName = "kayros-pc";
+  system.stateVersion = "25.05";
   time.timeZone = "Europe/Moscow";
-  
-  # ───────────────────────────────────────
-  # 5. Пакеты и оболочки
-  # ───────────────────────────────────────
-  environment.systemPackages = with pkgs; [
-    zsh
-	hyprland
-	kitty
-	waybar
-	wofi
-  ];
-  environment.shells = with pkgs; [ zsh bash ];
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  
-  programs.zsh.enable = true;
-  programs.git.enable = true;
-  #services.displayManager.defaultSession = "hyprland"
-  programs.hyprland = {
-    enable = true;
-    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    withUWSM = true;
-    xwayland.enable = true;
-  };
-  
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
-  };
-  
-  # Это тоже нужно для UWSM
-  #services.displayManager.autoLogin.enable = false;  # убедись, что нет автологина в X11!
-  #services.xserver.enable = false;                   # Hyprland ≠ X11!
-  # hardware.graphics.enable = true;
-  
-  # ───────────────────────────────────────
-  # Локализация и консоль
-  # ───────────────────────────────────────
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
-  i18n.extraLocaleSettings = { LC_TIME = "ru_RU.UTF-8"; };
-  console = {
-    font = "LatGrkCyr-12x22";
-	useXkbConfig = false;
-  };
-  fonts.packages = [ 
-    pkgs.nerd-fonts.comic-shanns-mono
-    pkgs.nerd-fonts.droid-sans-mono
-  ];
-  # ───────────────────────────────────────
-  # 3. Сеть и брандмауэр
-  # ───────────────────────────────────────
+  networking.hostName = "kayros-pc";
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
-  # Примеры:
-  # networking.firewall.allowedTCPPorts = [ 22 80 443 ];
-  # networking.wireless.enable = false;  # если не нужен Wi-Fi
-  # services.openssh.enable = true;      # альтернатива sshd
-
+  
   # ───────────────────────────────────────
-  # 4. Загрузка и ядро
+  # 3. Загрузка и ядро
   # ───────────────────────────────────────
   boot.kernelParams = [ "video=1280x800" ];
   boot.loader.systemd-boot.enable = true;
@@ -82,26 +33,30 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   # Драйверы для initrd (для VMware, NVMe и т.д.)
   boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "vmw_pvscsi" "vmwgfx" "drm" ];
-  # Примеры:
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelParams = [ "quiet" "loglevel=4" ];
-  # boot.supportedFilesystems = [ "ntfs" ];  # если нужно
+  
+  # ───────────────────────────────────────
+  # 4. Консоль и локализация
+  # ───────────────────────────────────────
+  console.font = "LatGrkCyr-12x22";
+  console.useXkbConfig = false;
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [ "ru_RU.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" ];
+  i18n.extraLocaleSettings.LC_TIME = "ru_RU.UTF-8";
+  fonts.packages = [ 
+    pkgs.nerd-fonts.comic-shanns-mono
+    pkgs.nerd-fonts.droid-sans-mono
+  ];
 
   # ───────────────────────────────────────
-  # 6. Пользователи и права
+  # 5. Пользователи и права
   # ───────────────────────────────────────
   users.users.kayros = {
     isNormalUser = true;
     home = "/home/kayros";
     shell = pkgs.zsh;
     initialPassword = "123";
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+    extraGroups = [ "wheel" "networkmanager" ];
   };
-  # Sudo без пароля для группы wheel
-  security.sudo.wheelNeedsPassword = false;
-  # systemd.user.linger = true;
-  # services.getty.autologinUser = "kayros";
-  services.sshd.enable = true;
-
+  security.sudo.wheelNeedsPassword = false;				# sudo без пароля
+  services.sshd.enable = true;							# SSH (опционально)
 }
-
