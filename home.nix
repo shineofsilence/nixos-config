@@ -5,6 +5,7 @@
 
   # Пакеты только для пользователя
   home.packages = with pkgs; [
+    foot
     # Можно добавить kitty, neovim и т.д. позже
   ];
 
@@ -31,7 +32,7 @@
     };
   };
   
-  # Минимальный Hyprland: запуск zsh напрямую
+  # Минимальный Hyprland
   wayland.windowManager.hyprland.settings = {
     monitor = [ ",preferred,auto,1" ];
     input = {
@@ -40,9 +41,10 @@
     };
     "$mod" = "SUPER";
     bind = [
-      "$mod, T, exec, zsh"   # ← запускаем zsh напрямую
+      "$mod, T, exec, foot"   
       "$mod, Q, killactive,"
       "$mod, M, exit,"
+	  "$mod SHIFT, M, exec, systemctl --user stop hyprland-session.target"
     ];
   };
   

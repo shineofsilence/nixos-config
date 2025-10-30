@@ -27,7 +27,7 @@
   # ───────────────────────────────────────
   # 3. Загрузка и ядро
   # ───────────────────────────────────────
-  boot.kernelParams = [ "video=1280x800" ];
+  # boot.kernelParams = [ "video=1024x768" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
