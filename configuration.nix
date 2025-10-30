@@ -63,5 +63,5 @@
   # ───────────────────────────────────────
   # 6. Home Manager
   # ───────────────────────────────────────
-  home-manager.users.kayros = import ./home/home.nix;   # Настраиваем Home Manager для пользователя kayros
+  home-manager.users.kayros = import ./home.nix;   # Настраиваем Home Manager для пользователя kayros
 }
