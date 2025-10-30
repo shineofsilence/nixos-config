@@ -6,6 +6,7 @@
   # Пакеты только для пользователя
   home.packages = with pkgs; [
     foot
+	zenity
     # Можно добавить kitty, neovim и т.д. позже
   ];
 
@@ -41,7 +42,8 @@
     };
     "$mod" = "SUPER";
     bind = [
-      "$mod, T, exec, foot"   
+      "$mod, T, exec, foot"
+      "$mod, Z, exec, zenity --info --text='Hyprland works!'"	  
       "$mod, Q, killactive,"
       "$mod, M, exit,"
 	  "$mod SHIFT, M, exec, systemctl --user stop hyprland-session.target"
