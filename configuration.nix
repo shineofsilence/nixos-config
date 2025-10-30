@@ -7,6 +7,9 @@
   imports = [
     ./hardware-configuration.nix
 	<home-manager/nixos>  # ← подключаем HM как модуль
+	({
+      url = "github:nix-community/home-manager/release-25.05";
+    } + "/nixos")
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
