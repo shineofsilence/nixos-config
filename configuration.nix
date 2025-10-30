@@ -6,12 +6,12 @@
   # ───────────────────────────────────────
   imports = [
     ./hardware-configuration.nix
-	<home-manager/nixos>
+	pkgs.home-manager.nixosModules.home-manager       # ← официальный путь в новых версиях
   ];
   environment.systemPackages = with pkgs; [
     zsh
     git
-	home-manager
+	pkgs.home-manager
   ];
   environment.shells = with pkgs; [ zsh bash ];
   
