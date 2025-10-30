@@ -30,7 +30,22 @@
       init.defaultBranch = "main";
     };
   };
-
+  
+  # Минимальный Hyprland: запуск zsh напрямую
+  wayland.windowManager.hyprland.settings = {
+    monitor = [ ",preferred,auto,1" ];
+    input = {
+      kb_layout = "us,ru";
+      kb_options = "grp:alt_shift_toggle";
+    };
+    "$mod" = "SUPER";
+    bind = [
+      "$mod, T, exec, zsh"   # ← запускаем zsh напрямую
+      "$mod, Q, killactive,"
+      "$mod, M, exit,"
+    ];
+  };
+  
   # Переменные сессии (если позже добавишь Wayland)
   # home.sessionVariables = {
   #   XDG_SESSION_TYPE = "wayland";

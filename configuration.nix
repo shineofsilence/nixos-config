@@ -57,5 +57,36 @@
     extraGroups = [ "wheel" "networkmanager" ];
   };
   security.sudo.wheelNeedsPassword = false;				# sudo без пароля
-  services.sshd.enable = true;							# SSH (опционально)
+  services.sshd.enable = true;	                        # SSH (опционально)
+  
+  # ───────────────────────────────────────
+  # 6. Графическая сессия: greetd + Hyprland
+  # ───────────────────────────────────────
+  programs.hyprland = {
+    enable = true;
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+  };
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "kayros";
+      };
+    };
+  };
+
+  # Запретить автологин в TTY (чтобы greetd работал)
+  services.getty.autologinUser = null;
 }
