@@ -6,11 +6,14 @@
   # ───────────────────────────────────────
   imports = [
     ./hardware-configuration.nix
-	({
-      type = "github";
-      repo = "nix-community/home-manager";
-      rev = "release-25.05";  # или "master" для последней версии
-    } + "/nixos")
+	(
+      let
+        hmSrc = builtins.fetchTarball {
+          url = "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+        };
+      in
+      import "${hmSrc}/nixos"
+    )
   ];
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
