@@ -6,10 +6,12 @@
   # ───────────────────────────────────────
   imports = [
     ./hardware-configuration.nix
+	<home-manager/nixos>
   ];
   environment.systemPackages = with pkgs; [
     zsh
     git
+	home-manager
   ];
   environment.shells = with pkgs; [ zsh bash ];
   
