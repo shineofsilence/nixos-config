@@ -6,8 +6,6 @@
   # ───────────────────────────────────────
   imports = [
     ./hardware-configuration.nix
-	./apps/git.nix
-    ./apps/zsh.nix
   ];
   environment.systemPackages = with pkgs; [
     zsh
