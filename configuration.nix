@@ -31,6 +31,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  
+  boot.loader.systemd-boot.configurationLimit = 10;
+  # И отключи попытки писать в /boot/efi при обычном switch:
+  environment.etc."loader/entries".enable = false;
+  
   # Драйверы для initrd (для VMware, NVMe и т.д.)
   boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "vmw_pvscsi" "vmwgfx" "drm" ];
   
