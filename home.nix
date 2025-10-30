@@ -47,6 +47,12 @@
       "$mod, Q, killactive,"
       "$mod, M, exit,"
 	  "$mod SHIFT, M, exec, systemctl --user stop hyprland-session.target"
+	  
+	  # Переключение рабочих пространств
+      "$mod, 1, workspace, 1"
+      "$mod, 2, workspace, 2"
+      "$mod, 3, workspace, 3"
+      "$mod, 4, workspace, 4"
     ];
   };
   
