@@ -59,4 +59,10 @@
   };
   security.sudo.wheelNeedsPassword = false;				# sudo без пароля
   services.sshd.enable = true;							# SSH (опционально)
+  
+  # ───────────────────────────────────────
+  # 6. Home Manager
+  # ───────────────────────────────────────
+  programs.home-manager.enable = true;					# Включаем модуль Home Manager
+  home-manager.users.kayros = import ./home/home.nix;   # Настраиваем Home Manager для пользователя kayros
 }
