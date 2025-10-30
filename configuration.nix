@@ -6,12 +6,10 @@
   # ───────────────────────────────────────
   imports = [
     ./hardware-configuration.nix
-	<home-manager/nixos>
   ];
   environment.systemPackages = with pkgs; [
     zsh
     git
-	home-manager
   ];
   environment.shells = with pkgs; [ zsh bash ];
   
@@ -59,9 +57,4 @@
   };
   security.sudo.wheelNeedsPassword = false;				# sudo без пароля
   services.sshd.enable = true;							# SSH (опционально)
-  
-  # ───────────────────────────────────────
-  # 6. Home Manager
-  # ───────────────────────────────────────
-  home-manager.users.kayros = import ./home.nix;   # Настраиваем Home Manager для пользователя kayros
 }
