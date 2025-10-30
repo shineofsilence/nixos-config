@@ -35,6 +35,7 @@
   # ───────────────────────────────────────
   # 4. Консоль и локализация
   # ───────────────────────────────────────
+  programs.zsh.enable = true;                           # zsh — это наша оболочка
   console.font = "LatGrkCyr-12x22";
   console.useXkbConfig = false;
   i18n.defaultLocale = "en_US.UTF-8";
