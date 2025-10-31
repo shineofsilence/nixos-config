@@ -81,7 +81,8 @@
     enable = true;
     settings = {
       default_session = {
-		command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${pkgs.bash}/bin/bash -c "exec ~/.nix-profile/bin/home-manager-session hyprland"'";
+		# command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${pkgs.bash}/bin/bash -c "exec ~/.nix-profile/bin/home-manager-session hyprland"'";
+		command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${config.system.build.home-manager.users.kayros}/activate-user.sh start-session hyprland'";
 		user = "kayros";
       };
     };
