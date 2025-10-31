@@ -4,6 +4,8 @@
 
   # Пакеты только для пользователя
   home.packages = with pkgs; [
+    zsh-syntax-highlighting
+    zsh-autosuggestions
     foot
   ];
 
@@ -11,13 +13,23 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    syntaxHighlighting.enable = true;
-    autosuggestion.enable = true;  # ← теперь работает!
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "sudo" ];
       theme = "af-magic";
     };
+  };
+
+  # Zsh Syntax Highlighting
+  programs.zsh-syntax-highlighting = {
+    enable = true;
+  };
+  
+  # Zsh Autosuggestions
+  programs.zsh-autosuggestions = {
+    enable = true;
+    # Дополнительные настройки для autosuggestions (например, стиль)
+    # history_ignore_space = true;
   };
 
   # Git 
