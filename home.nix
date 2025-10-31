@@ -5,7 +5,6 @@
   # Пакеты только для пользователя
   home.packages = with pkgs; [
     zsh-syntax-highlighting
-    zsh-autosuggestions
     foot
   ];
 
@@ -23,13 +22,6 @@
   # Zsh Syntax Highlighting
   programs.zsh-syntax-highlighting = {
     enable = true;
-  };
-  
-  # Zsh Autosuggestions
-  programs.zsh-autosuggestions = {
-    enable = true;
-    # Дополнительные настройки для autosuggestions (например, стиль)
-    # history_ignore_space = true;
   };
 
   # Git 
