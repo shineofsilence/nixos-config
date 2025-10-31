@@ -81,8 +81,8 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd ${config.home-manager.users.kayros.sessionPath}/bin/hyprland";
-        user = "kayros";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${config.system.build.users.kayros.home-manager-files}/bin/hyprland'";
+		user = "kayros";
       };
     };
   };
