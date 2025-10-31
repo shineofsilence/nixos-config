@@ -81,7 +81,7 @@
     enable = true;
     settings = {
       default_session = {
-		command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${config.home-manager.users.kayros.config.wayland.windowManager.hyprland.start-script}'";
+		command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd '${pkgs.bash}/bin/bash -c "exec ~/.nix-profile/bin/home-manager-session hyprland"'";
 		user = "kayros";
       };
     };
