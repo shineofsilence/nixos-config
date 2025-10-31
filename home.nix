@@ -4,7 +4,6 @@
 
   # Пакеты только для пользователя
   home.packages = with pkgs; [
-    zsh-syntax-highlighting
     foot
   ];
 
@@ -17,11 +16,6 @@
       plugins = [ "git" "sudo" ];
       theme = "af-magic";
     };
-  };
-
-  # Zsh Syntax Highlighting
-  programs.zsh-syntax-highlighting = {
-    enable = true;
   };
 
   # Git 
